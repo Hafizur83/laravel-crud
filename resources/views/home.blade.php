@@ -31,7 +31,13 @@
                         <td>{{Str::limit($row->title,60)}}</td>
                         <td>{{$row->catagories->cat_name}}</td>
                         <td><img width="80px" src="{{ asset('image/'.$row->image) }}" alt="image"></td>
-                        <td>{{$row->status}}</td>
+                        <td>@if ($row->status == 'Published')
+                            <span class="badge bg-success">{{$row->status}}</span>
+                        @else
+                        <span class="badge bg-warning text-dark">{{$row->status}}</span>
+                        @endif
+                            
+                        </td>
                         <td>{{\Carbon\Carbon::parse($row->created_at)->diffForHumans()}}</td>
                         <td>
                             <a href="{{route('post.show',$row->id)}}" class='btn btn-sm btn-primary'><i class="fa fa-eye"></i></a> |
